@@ -3,907 +3,1346 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diogo Sampaio — Week One at OutSystems · Digital</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,40,360;0,40,540;0,40,720;1,40,360&display=swap" rel="stylesheet">
+<title>Diogo Sampaio — Week One at OutSystems</title>
 <style>
   :root {
-    --ink: #171717;
-    --paper: #FFFFFF;
-    --rule: #C7C7C7;
-    --accent: #E62028;
-    --accent-soft: #F9D0D2;
-    --green: #171717;
-    --green-soft: #F5F5F5;
-    --gold: #A51018;
-    --gold-soft: #F9D0D2;
-    --blue: #454545;
-    --blue-soft: #F5F5F5;
-    --muted: #666666;
-    --mono: 'DM Sans', Calibri, sans-serif;
-    --serif: 'DM Sans', Calibri, sans-serif;
-    --sans: 'DM Sans', Calibri, sans-serif;
+    --red: #e8002d;
+    --red-dark: #b5001f;
+    --ink: #0d0d0d;
+    --ink-soft: #2c2c2c;
+    --muted: #6b7280;
+    --rule: #e5e7eb;
+    --bg: #ffffff;
+    --surface: #f9f9f9;
+    --surface-warm: #fdf8f5;
+    --accent-blue: #1e40af;
+    --accent-green: #15803d;
+    --tag-bg: #f3f4f6;
+    --tag-text: #374151;
+    --highlight: #fff4e6;
+    --highlight-border: #f59e0b;
+    --font-display: 'DM Serif Display', 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', 'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: var(--paper);
+    font-family: var(--font-body);
+    background: var(--bg);
     color: var(--ink);
-    font-family: var(--sans);
-    font-weight: 360;
     line-height: 1.6;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 48px 32px 80px;
+    font-size: 15px;
   }
 
+  /* ─── MASTHEAD ─── */
   .masthead {
-    border-top: 4px solid var(--ink);
-    border-bottom: 1px solid var(--ink);
-    padding: 28px 0 20px;
-    margin-bottom: 0;
+    background: var(--ink);
+    color: white;
+    padding: 0;
     display: grid;
     grid-template-columns: 1fr 120px auto;
+    align-items: stretch;
+    border-bottom: 4px solid var(--red);
+    min-height: 160px;
+    overflow: hidden;
+  }
+  .masthead-text {
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .masthead-org {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: #9ca3af;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .masthead h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: white;
+    margin-bottom: 16px;
+  }
+  .masthead h1 em {
+    color: var(--red);
+    font-style: italic;
+  }
+  .masthead-meta {
+    font-size: 12.5px;
+    color: #d1d5db;
+    line-height: 1.8;
+  }
+  .masthead-meta strong { color: white; }
+
+  .masthead-logo {
+    background: var(--red);
+    display: flex;
     align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead-logo svg { width: 64px; height: 64px; }
+
+  .masthead-badge {
+    background: #1a1a1a;
+    border-left: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 28px;
+    gap: 6px;
+    min-width: 120px;
+  }
+  .badge-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .badge-value {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: white;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  /* ─── BYLINE STRIP ─── */
+  .byline {
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .byline-cell {
+    padding: 16px 24px;
+    border-right: 1px solid var(--rule);
+    min-width: 140px;
+    flex: 1;
+  }
+  .byline-cell:last-child { border-right: none; }
+  .byline-key {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .byline-val {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ─── MAIN LAYOUT ─── */
+  main { max-width: 1060px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* ─── SECTION HEADERS ─── */
+  .section {
+    margin-top: 56px;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    min-width: 28px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  /* ─── WELCOME SECTION ─── */
+  .welcome-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 32px;
+    align-items: start;
+  }
+  .welcome-lead p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+  .welcome-lead p:last-child { margin-bottom: 0; }
+  .welcome-lead strong { color: var(--ink); }
+
+  .context-card {
+    background: var(--ink);
+    color: white;
+    border-radius: 2px;
+    padding: 24px;
+    position: sticky;
+    top: 20px;
+  }
+  .context-card-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: #9ca3af;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .context-stat {
+    padding: 12px 0;
+    border-bottom: 1px solid #333;
+  }
+  .context-stat:last-child { border-bottom: none; padding-bottom: 0; }
+  .context-stat-key {
+    font-size: 10px;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 3px;
+  }
+  .context-stat-val {
+    font-size: 13.5px;
+    color: white;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .context-stat-val em {
+    color: var(--red);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* ─── SCHEDULE GRID ─── */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    border: 1px solid var(--rule);
+  }
+  .day-col {
+    border: none;
+  }
+  .day-header {
+    background: var(--ink);
+    color: white;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .day-header.highlight { background: var(--red); }
+  .day-abbr {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .day-label {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .day-events {
+    padding: 14px 14px;
+    background: var(--surface);
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid var(--rule);
+    border-top: none;
+  }
+  .event {
+    background: white;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--muted);
+    padding: 9px 11px;
+    border-radius: 0 2px 2px 0;
+  }
+  .event.priority { border-left-color: var(--red); }
+  .event.recurring { border-left-color: var(--accent-blue); }
+  .event.milestone { border-left-color: var(--accent-green); }
+  .event-time {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 3px;
+  }
+  .event-name {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .event-note {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  .schedule-aside {
+    margin-top: 16px;
+    background: var(--highlight);
+    border: 1px solid var(--highlight-border);
+    border-left: 4px solid var(--highlight-border);
+    padding: 16px 20px;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .schedule-aside strong { color: var(--ink); }
+
+  /* ─── TWO-COL TOOLS ─── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .tools-group-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tool-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tool-row:last-child { border-bottom: none; }
+  .tool-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: var(--ink);
+    color: white;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+  }
+  .tool-icon.red { background: var(--red); }
+  .tool-icon.blue { background: var(--accent-blue); }
+  .tool-icon.green { background: var(--accent-green); }
+  .tool-icon.amber { background: #d97706; }
+  .tool-name {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+  .tool-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+  .tool-when {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--muted);
+    background: var(--tag-bg);
+    padding: 3px 7px;
+    border-radius: 2px;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+  .tool-info { flex: 1; }
+
+  /* ─── TEAM TABLE ─── */
+  .team-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .team-table th {
+    background: var(--ink);
+    color: white;
+    padding: 11px 16px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: left;
+  }
+  .team-table td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .team-table tr:last-child td { border-bottom: none; }
+  .team-table tr:nth-child(even) td { background: var(--surface); }
+  .team-name { font-weight: 600; color: var(--ink); }
+  .team-role { color: var(--muted); font-size: 11.5px; }
+  .slack-handle {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-blue);
+    background: #eff6ff;
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  /* ─── CHANNEL GRID ─── */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .channel-item {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--ink);
+    padding: 14px 16px;
+  }
+  .channel-item.priority-ch { border-left-color: var(--red); }
+  .channel-name {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .channel-desc {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .channels-aside {
+    margin-top: 16px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .channels-aside strong { color: var(--ink); }
+
+  /* ─── LOGISTICS GRID ─── */
+  .logistics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+  }
+  .logistics-cell {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 20px;
+  }
+  .logistics-key {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .logistics-val {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .logistics-detail {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ─── BIG BET / Q2 BANNER ─── */
+  .spiff-banner {
+    background: var(--ink);
+    color: white;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 24px;
   }
-  .masthead-logo { display: flex; align-items: center; justify-content: center; }
-  .masthead-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  .masthead h1 { font-family: var(--serif); font-size: clamp(34px, 6vw, 56px); font-weight: 720; line-height: 1.0; letter-spacing: -1px; }
-  .masthead h1 em { font-style: italic; color: var(--accent); }
-  .masthead-meta { text-align: right; }
-  .masthead-meta .badge { font-family: var(--mono); font-size: 8px; letter-spacing: 0.03em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 5px 10px; display: inline-block; margin-bottom: 8px; }
-  .masthead-meta p { font-size: 11px; color: var(--muted); font-family: var(--mono); line-height: 1.7; }
+  .spiff-banner-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: #9ca3af;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .spiff-banner-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: white;
+    line-height: 1.1;
+  }
+  .spiff-banner-title em { color: var(--red); font-style: normal; }
+  .spiff-banner-cta {
+    flex-shrink: 0;
+    background: var(--red);
+    color: white;
+    padding: 11px 20px;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .info-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 20px;
+  }
+  .info-card-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .info-card-body {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
 
-  .byline-strip { border-bottom: 1px solid var(--rule); padding: 10px 0; display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; }
-  .byline-item { display: flex; flex-direction: column; }
-  .byline-item .label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); }
-  .byline-item .value { font-size: 13px; font-weight: 540; color: var(--ink); }
-
-  .welcome-block { display: grid; grid-template-columns: 1fr 280px; gap: 40px; margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--rule); }
-  .welcome-block .lead { font-family: var(--serif); font-size: 18px; line-height: 1.55; font-weight: 400; }
-  .welcome-block .lead strong { font-weight: 720; }
-  .welcome-block .lead em { font-style: italic; color: var(--accent); }
-
-  .context-card { background: var(--ink); color: var(--paper); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
-  .context-card .context-title { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.6; }
-  .context-card .context-stat { border-top: 1px solid rgba(255,255,255,.15); padding-top: 14px; }
-  .context-card .stat-label { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; opacity: 0.55; margin-bottom: 3px; }
-  .context-card .stat-value { font-family: var(--serif); font-size: 15px; font-weight: 720; line-height: 1.3; }
-  .context-card .stat-sub { font-size: 11px; opacity: 0.65; margin-top: 2px; }
-
-  .section { margin-bottom: 48px; }
-  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-  .section-num { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .1em; min-width: 24px; }
-  .section-title { font-family: var(--serif); font-size: 22px; font-weight: 720; letter-spacing: -0.3px; }
-  .section-rule { flex: 1; height: 1px; background: var(--rule); }
-
-  .schedule-grid { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
-  .schedule-day { background: var(--paper); display: grid; grid-template-columns: 100px 1fr; }
-  .schedule-day.highlight { background: var(--accent-soft); }
-  .day-label { padding: 16px; border-right: 1px solid var(--rule); display: flex; flex-direction: column; justify-content: flex-start; }
-  .day-name { font-family: var(--serif); font-size: 16px; font-weight: 720; line-height: 1; margin-bottom: 3px; }
-  .day-tag { font-family: var(--mono); font-size: 8px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); }
-  .day-events { padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
-  .event { display: flex; gap: 10px; align-items: flex-start; }
-  .event-time { font-family: var(--mono); font-size: 10px; color: var(--muted); min-width: 60px; padding-top: 2px; letter-spacing: .04em; }
-  .event-title { font-size: 13px; font-weight: 540; line-height: 1.3; }
-  .event-note { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .event-link { color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: 10px; }
-  .event-link:hover { text-decoration: underline; }
-  .pill { display: inline-block; font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; padding: 2px 7px; border-radius: 2px; margin-left: 6px; vertical-align: middle; }
-  .pill-red { background: var(--accent); color: white; }
-  .pill-green { background: var(--green); color: white; }
-  .pill-gold { background: var(--gold); color: white; }
-  .pill-blue { background: var(--blue); color: white; }
-  .pill-outline { border: 1px solid var(--rule); color: var(--muted); }
-
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .info-card { border: 1px solid var(--rule); padding: 20px; }
-  .info-card .card-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-  .info-card .card-title { font-family: var(--serif); font-size: 16px; font-weight: 720; margin-bottom: 12px; }
-  .info-card p { font-size: 13px; color: var(--ink); margin-bottom: 6px; line-height: 1.5; }
-  .info-card p strong { font-weight: 540; }
-
-  .tool-row { display: grid; grid-template-columns: 28px 1fr auto; align-items: start; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--rule); }
-  .tool-row:last-child { border-bottom: none; }
-  .tool-icon { width: 28px; height: 28px; background: var(--ink); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 9px; font-weight: 540; letter-spacing: .05em; flex-shrink: 0; margin-top: 2px; }
-  .tool-icon.green { background: var(--green); }
-  .tool-icon.gold { background: var(--gold); }
-  .tool-icon.blue { background: var(--blue); }
-  .tool-icon.red { background: var(--accent); }
-  .tool-name { font-size: 13.5px; font-weight: 540; line-height: 1.2; margin-bottom: 2px; }
-  .tool-desc { font-size: 11.5px; color: var(--muted); }
-  .tool-status { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--green); padding-top: 3px; }
-
-  .team-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .team-table th { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 0 12px 8px 0; border-bottom: 1px solid var(--rule); font-weight: 400; }
-  .team-table td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.45; }
-  .team-table td:last-child { border-right: none; }
-  .team-table tr:last-child td { border-bottom: none; }
-  .name-cell { font-weight: 540; white-space: nowrap; }
-  .role-cell { color: var(--muted); font-size: 12px; }
-  .slack-cell { font-family: var(--mono); font-size: 10px; color: var(--blue); }
-
-  .channel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .channel-item { display: flex; align-items: flex-start; gap: 8px; padding: 10px; background: white; border: 1px solid var(--rule); }
-  .channel-hash { font-family: var(--mono); font-size: 14px; color: var(--muted); line-height: 1; margin-top: 2px; flex-shrink: 0; }
-  .channel-name { font-family: var(--mono); font-size: 11px; font-weight: 540; color: var(--blue); margin-bottom: 2px; }
-  .channel-desc { font-size: 11px; color: var(--muted); line-height: 1.35; }
-
-  .faq-item { border-bottom: 1px solid var(--rule); padding: 16px 0; }
-  .faq-item:first-child { padding-top: 0; }
-  .faq-q { font-family: var(--serif); font-size: 15px; font-weight: 720; margin-bottom: 8px; display: flex; gap: 10px; align-items: baseline; }
-  .faq-q::before { content: 'Q'; font-family: var(--mono); font-size: 9px; color: var(--accent); letter-spacing: .1em; padding-top: 2px; flex-shrink: 0; }
-  .faq-a { font-size: 13px; line-height: 1.6; color: var(--ink); padding-left: 20px; }
-  .faq-a a { color: var(--accent); text-decoration: none; font-weight: 540; }
-  .faq-a a:hover { text-decoration: underline; }
-
-  .spiff-banner { background: var(--green); color: white; padding: 20px 24px; margin-bottom: 24px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
-  .spiff-banner .spiff-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.7; margin-bottom: 5px; }
-  .spiff-banner .spiff-title { font-family: var(--serif); font-size: 17px; font-weight: 720; line-height: 1.3; }
-  .spiff-banner .spiff-mult { font-family: var(--serif); font-size: 36px; font-weight: 720; line-height: 1; opacity: 0.9; }
-  .spiff-sub { font-family: var(--mono); font-size: 9px; opacity: 0.65; text-align: right; letter-spacing: .06em; }
-
-  .logistics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 20px; }
-  .logistics-cell { background: var(--paper); padding: 16px; }
-  .logistics-cell .lc-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .logistics-cell .lc-value { font-size: 13px; font-weight: 540; line-height: 1.4; }
-  .logistics-cell .lc-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
-
-  .resource-row { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--rule); font-size: 12.5px; }
+  /* ─── RESOURCE ROWS ─── */
+  .resource-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
   .resource-row:last-child { border-bottom: none; }
-  .resource-row .res-type { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 7px; background: var(--gold-soft); color: var(--gold); white-space: nowrap; flex-shrink: 0; min-width: 58px; text-align: center; }
-  .resource-row a { color: var(--accent); text-decoration: none; font-weight: 540; }
-  .resource-row a:hover { text-decoration: underline; }
-  .resource-row .res-note { color: var(--muted); font-size: 11px; margin-left: auto; flex-shrink: 0; }
+  .res-type {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: white;
+    background: var(--ink);
+    padding: 2px 7px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    min-width: 58px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .res-type.red { background: var(--red); }
+  .res-type.blue { background: var(--accent-blue); }
+  .res-type.green { background: var(--accent-green); }
+  .res-name {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--ink);
+    flex: 1;
+  }
+  .res-desc {
+    font-size: 12px;
+    color: var(--muted);
+  }
 
-  .footer { border-top: 1px solid var(--rule); margin-top: 60px; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-  .footer p { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .06em; }
-  .sources-list { font-family: var(--mono); font-size: 9px; color: var(--muted); line-height: 1.8; letter-spacing: .03em; margin-top: 8px; }
+  /* ─── FAQ ─── */
+  .faq-item {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .faq-q-prefix {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--red);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .faq-q-text {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .faq-a {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    padding-left: 24px;
+  }
 
-  .aside-box { border-left: 3px solid var(--accent); padding: 14px 16px; background: var(--accent-soft); margin-top: 16px; font-size: 12px; line-height: 1.5; }
-  .aside-box strong { display: block; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    color: #9ca3af;
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-top: 60px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  footer strong { color: #d1d5db; }
+  .sources-list {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: #4b5563;
+    line-height: 1.8;
+    margin-top: 12px;
+  }
 
-  @media (max-width: 680px) {
-    .welcome-block, .two-col { grid-template-columns: 1fr; }
-    .logistics-grid { grid-template-columns: 1fr 1fr; }
-    .channel-grid { grid-template-columns: 1fr; }
-    .masthead { grid-template-columns: 1fr auto; }
-    .masthead-logo { display: none; }
-    .masthead-meta { text-align: left; }
-    body { padding: 28px 18px 60px; }
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .masthead { grid-template-columns: 1fr; }
+    .masthead-logo, .masthead-badge { display: none; }
+    .welcome-grid { grid-template-columns: 1fr; }
+    .context-card { position: static; }
+    .schedule-grid { grid-template-columns: 1fr; }
+    .two-col, .info-cards, .logistics-grid, .channel-grid { grid-template-columns: 1fr; }
+    .byline { flex-direction: column; }
+    .spiff-banner { flex-direction: column; }
   }
 
   @media print {
-    body { background: white; padding: 20px; }
-    .spiff-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .context-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .masthead { page-break-inside: avoid; }
+    .section { page-break-inside: avoid; }
   }
 </style>
 </head>
 <body>
 
-<!-- MASTHEAD -->
+<!-- ─── MASTHEAD ─── -->
 <header class="masthead">
-  <div>
-    <div class="masthead-label">OutSystems · Digital</div>
+  <div class="masthead-text">
+    <div class="masthead-org">OutSystems · Digital</div>
     <h1>Welcome,<br><em>Diogo.</em></h1>
+    <div class="masthead-meta">
+      <strong>Role:</strong> Senior Software Engineer<br>
+      <strong>Team:</strong> Digital — EMEA (Lisbon)<br>
+      <strong>Manager:</strong> Catarina Sousa<br>
+      <strong>Start:</strong> April 24, 2026
+    </div>
   </div>
   <div class="masthead-logo">
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
-      <defs>
-        <mask id="donut-ring">
-          <circle cx="50" cy="50" r="48" fill="white"/>
-          <circle cx="50" cy="50" r="22" fill="black"/>
-        </mask>
-      </defs>
-      <circle cx="50" cy="50" r="48" fill="#E62028" mask="url(#donut-ring)"/>
+    <!-- OutSystems ring SVG -->
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="28" stroke="white" stroke-width="5" fill="none"/>
+      <circle cx="32" cy="32" r="16" stroke="white" stroke-width="3" fill="none"/>
+      <circle cx="32" cy="32" r="6" fill="white"/>
     </svg>
   </div>
-  <div class="masthead-meta">
-    <div class="badge">Day One Guide</div>
-    <p>Role: Senior Software Engineer<br>
-       Team: Digital<br>
-       Manager: Catarina Sousa<br>
-       Start: April 24, 2026</p>
+  <div class="masthead-badge">
+    <span class="badge-label">Guide</span>
+    <span class="badge-value">Day<br>One</span>
   </div>
 </header>
 
-<div class="byline-strip">
-  <div class="byline-item">
-    <span class="label">Location</span>
-    <span class="value">Lisbon / Remote</span>
+<!-- ─── BYLINE STRIP ─── -->
+<div class="byline">
+  <div class="byline-cell">
+    <div class="byline-key">Region</div>
+    <div class="byline-val">EMEA</div>
   </div>
-  <div class="byline-item">
-    <span class="label">Manager</span>
-    <span class="value">Catarina Sousa</span>
+  <div class="byline-cell">
+    <div class="byline-key">Manager</div>
+    <div class="byline-val">Catarina Sousa</div>
   </div>
-  <div class="byline-item">
-    <span class="label">Org Leader</span>
-    <span class="value">Digital Leadership Team</span>
+  <div class="byline-cell">
+    <div class="byline-key">Department</div>
+    <div class="byline-val">Digital</div>
   </div>
-  <div class="byline-item">
-    <span class="label">Company Mission</span>
-    <span class="value">Bend the curve to €1B ARR</span>
+  <div class="byline-cell">
+    <div class="byline-key">Company Focus</div>
+    <div class="byline-val">Agentic Systems Engineering</div>
   </div>
-  <div class="byline-item">
-    <span class="label">Onboarding Program</span>
-    <span class="value">Digital Big Bet Scout</span>
+  <div class="byline-cell">
+    <div class="byline-key">Onboarding Program</div>
+    <div class="byline-val">Digital Big Bet Scout</div>
   </div>
 </div>
 
+<!-- ─── MAIN ─── -->
+<main>
 
-<!-- WELCOME -->
-<section class="section">
-  <div class="welcome-block">
-    <div>
-      <div class="masthead-label" style="margin-bottom:12px">· Welcome</div>
-      <p class="lead">
-        You're joining OutSystems at <strong>one of the most pivotal moments in our history</strong>. In March 2026 we launched a new category — <em>Agentic Systems Engineering</em> — repositioning OutSystems as the platform that brings order, governance, and scale to enterprise AI. The Digital team sits at the heart of this transformation: every internal tool you ship, every Scout experiment you run, every Big Bet you help advance is proof-of-concept from the inside.
-      </p>
-      <p class="lead" style="margin-top:16px">
-        Your first week is structured, fast-paced, and purposeful. By Friday, you should have your dev environment running, your current Big Bet understood, your key relationships started, and a clear picture of your first sprint contribution. The Digital team has invested seriously in getting you <strong>Day One ready</strong> — lean into it.
-      </p>
-      <div class="aside-box">
-        <strong>Your Manager's Context</strong>
-        Catarina Sousa leads the Digital team's agentic enablement scouting mission — currently running the #2 Big Bet on Enablement, Onboarding, and Coaching. She and co-scout Diogo Sampaio are mid-experiment on Claude-powered knowledge search for the revenue team. Week 1 priorities: get your dev environment running, read all existing Scout documentation before touching code, and book a 1:1 with Catarina on Day 1 to understand which experiment to pick up.
+  <!-- § WELCOME -->
+  <div class="section" style="margin-top: 40px;">
+    <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--muted); margin-bottom: 12px; text-transform: uppercase;">§ Welcome</div>
+    <div class="welcome-grid">
+      <div class="welcome-lead">
+        <p>You're joining OutSystems at <strong>one of the most pivotal moments in our history</strong>. On March 31, 2026 we launched a new category — <em>Agentic Systems Engineering</em> — repositioning OutSystems as the platform that brings order, governance, and scale to enterprise AI. The Digital team is the internal engine of that transformation: every tool you ship, every Scout experiment you run, every Big Bet you advance is proof of concept from the inside out.</p>
+        <p>Your first week is structured, fast-paced, and purposeful. The team runs on <strong>3-week Scout missions</strong> — tight cycles of hypothesis, experiment, and evidence. By Friday, you should have your dev environment running, your current Big Bet understood, and your first contribution in flight. Catarina has invested in getting you Day One ready — lean into it.</p>
+        <p><strong>Your Manager's Context.</strong> Catarina Sousa is currently focused on the V2MOM app and an active Agent outcome experiment (referenced in #dispatch this week). In your first 1:1, expect to align on your Big Bet assignment, the current sprint status, and any active Scout experiments already in progress. Come with specific questions about what "day one contribution" looks like.</p>
       </div>
-    </div>
-
-    <div class="context-card">
-      <div class="context-title">Company Snapshot · Q2 2026</div>
-      <div class="context-stat">
-        <div class="stat-label">Category</div>
-        <div class="stat-value">Agentic Systems Engineering</div>
-        <div class="stat-sub">Launched March 31, 2026</div>
-      </div>
-      <div class="context-stat">
-        <div class="stat-label">ARR Target</div>
-        <div class="stat-value">€1B</div>
-        <div class="stat-sub">Bending the curve this year</div>
-      </div>
-      <div class="context-stat">
-        <div class="stat-label">Active Sales Plays</div>
-        <div class="stat-value">BFS · Insurance · Compete vs AI-Native</div>
-        <div class="stat-sub">New play every Tuesday through May</div>
-      </div>
-      <div class="context-stat">
-        <div class="stat-label">Current Big Bet (Digital #2)</div>
-        <div class="stat-value">Enablement, Onboarding & Coaching</div>
-        <div class="stat-sub">Claude-powered knowledge search for revenue team</div>
-      </div>
-      <div class="context-stat">
-        <div class="stat-label">ONE Conference</div>
-        <div class="stat-value">June 2–3, 2026</div>
-        <div class="stat-sub">Apply by April 24 via ONE Internal App</div>
+      <div class="context-card">
+        <div class="context-card-title">Company Snapshot · Q2 2026</div>
+        <div class="context-stat">
+          <div class="context-stat-key">Category</div>
+          <div class="context-stat-val"><em>Agentic Systems Engineering</em> — launched March 31, 2026</div>
+        </div>
+        <div class="context-stat">
+          <div class="context-stat-key">ARR Target</div>
+          <div class="context-stat-val">Bending the curve to <em>€1B</em></div>
+        </div>
+        <div class="context-stat">
+          <div class="context-stat-key">Active Sales Plays</div>
+          <div class="context-stat-val">BFS · Insurance · Compete (Pro-Code/AI-Native) — new play every Tuesday through May</div>
+        </div>
+        <div class="context-stat">
+          <div class="context-stat-key">Agent Workbench</div>
+          <div class="context-stat-val"><em>10k</em> monthly execution entitlements by default for all ODC customers</div>
+        </div>
+        <div class="context-stat">
+          <div class="context-stat-key">ONE Conference</div>
+          <div class="context-stat-val">June 2–3 · Apply by <em>TODAY (Apr 24)</em></div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
+  <!-- 01 SCHEDULE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Your First Week — Day by Day</h2>
+    </div>
 
-<!-- 01 SCHEDULE -->
-<section class="section">
-  <div class="section-header">
-    <span class="section-num">01</span>
-    <h2 class="section-title">Your First Week — Day by Day</h2>
-    <div class="section-rule"></div>
+    <div class="schedule-grid">
+      <!-- MON -->
+      <div class="day-col">
+        <div class="day-header">
+          <span class="day-abbr">Mon</span>
+          <span class="day-label">Day One</span>
+        </div>
+        <div class="day-events">
+          <div class="event priority">
+            <div class="event-time">9:00 AM</div>
+            <div class="event-name">IT Setup & System Access</div>
+            <div class="event-note">Laptop, Okta/SSO, email, VPN. Post in #digital-spot for provisioning.</div>
+          </div>
+          <div class="event priority">
+            <div class="event-time">10:00 AM</div>
+            <div class="event-name">Alignment Performance (Catarina)</div>
+            <div class="event-note">Real calendar event. Align on Big Bet assignment, Q2 OKRs, and first sprint.</div>
+          </div>
+          <div class="event recurring">
+            <div class="event-time">10:30 AM</div>
+            <div class="event-name">Daily SCRUM</div>
+            <div class="event-note">Recurring with Catarina, Filipa, Cláudia, Beatriz.</div>
+          </div>
+          <div class="event">
+            <div class="event-time">Afternoon</div>
+            <div class="event-name">Dev environment & repo access</div>
+            <div class="event-note">Clone main repos, get local build running, verify ODC access.</div>
+          </div>
+          <div class="event">
+            <div class="event-time">EOD</div>
+            <div class="event-name">Join all Slack channels</div>
+            <div class="event-note">Introduce yourself in #digital and your sub-team channel.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TUE -->
+      <div class="day-col">
+        <div class="day-header">
+          <span class="day-abbr">Tue</span>
+          <span class="day-label">Context Day</span>
+        </div>
+        <div class="day-events">
+          <div class="event recurring">
+            <div class="event-time">10:30 AM</div>
+            <div class="event-name">Daily SCRUM</div>
+            <div class="event-note">Recurring with the team.</div>
+          </div>
+          <div class="event priority">
+            <div class="event-time">Morning</div>
+            <div class="event-name">Big Bet Brief Walkthrough</div>
+            <div class="event-note">Guided tour from Catarina — problem statement, experiment history, Scout deliverable deadline.</div>
+          </div>
+          <div class="event">
+            <div class="event-time">Afternoon</div>
+            <div class="event-name">Read Scout WIP Docs</div>
+            <div class="event-note">Find Big Bet brief, WIP experiment doc, and POC apps in Google Drive.</div>
+          </div>
+          <div class="event">
+            <div class="event-time">All day</div>
+            <div class="event-name">Sales Play Tuesday — #one-revenue-team</div>
+            <div class="event-note">This week: Compete vs Pro-Code/AI-Native. Understand the field's needs — they're your end users.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WED — HIGHLIGHT -->
+      <div class="day-col">
+        <div class="day-header highlight">
+          <span class="day-abbr">Wed</span>
+          <span class="day-label">Build Day</span>
+        </div>
+        <div class="day-events">
+          <div class="event priority">
+            <div class="event-time">10:00 AM</div>
+            <div class="event-name">V2MOM Design/DEX Sync</div>
+            <div class="event-note">Recurring with team. Context on the V2MOM app — one of Catarina's active workstreams.</div>
+          </div>
+          <div class="event recurring">
+            <div class="event-time">10:30 AM</div>
+            <div class="event-name">Daily SCRUM</div>
+            <div class="event-note">Recurring team sync.</div>
+          </div>
+          <div class="event milestone">
+            <div class="event-time">All day</div>
+            <div class="event-name">🚀 First experiment or PR</div>
+            <div class="event-note">Run a small Scout experiment or open a first PR. Full cycle: hypothesis → build → test → document.</div>
+          </div>
+          <div class="event">
+            <div class="event-time">15:00</div>
+            <div class="event-name">1:1 with Catarina</div>
+            <div class="event-note">Recurring weekly. Share environment setup status and first questions about the Big Bet.</div>
+          </div>
+          <div class="event">
+            <div class="event-time">16:30</div>
+            <div class="event-name">Performance Tool Sync</div>
+            <div class="event-note">Cross-team sync with Loren Mastronardi et al. on performance tooling.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THU -->
+      <div class="day-col">
+        <div class="day-header">
+          <span class="day-abbr">Thu</span>
+          <span class="day-label">Company Day</span>
+        </div>
+        <div class="day-events">
+          <div class="event priority">
+            <div class="event-time">10:30 AM</div>
+            <div class="event-name">Daily SCRUM</div>
+            <div class="event-note">Recurring.</div>
+          </div>
+          <div class="event priority">
+            <div class="event-time">~11 AM ET / 4 PM Lisbon</div>
+            <div class="event-name">Agentic Confidence Thursdays</div>
+            <div class="event-note">Value Selling — Agent Workbench. You're building tools for this audience — attend religiously.</div>
+          </div>
+          <div class="event">
+            <div class="event-time">Afternoon</div>
+            <div class="event-name">Digital All-Hands / Sprint Review</div>
+            <div class="event-note">Check #digital for calendar invite. Big Bet progress, experiment results, Scout recommendations.</div>
+          </div>
+          <div class="event">
+            <div class="event-time">EOD</div>
+            <div class="event-name">Intro 1:1s with cross-functional partners</div>
+            <div class="event-note">Book short intros with your business sponsor and Revenue Enablement counterpart.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FRI -->
+      <div class="day-col">
+        <div class="day-header">
+          <span class="day-abbr">Fri</span>
+          <span class="day-label">Evidence Day</span>
+        </div>
+        <div class="day-events">
+          <div class="event recurring">
+            <div class="event-time">10:30 AM</div>
+            <div class="event-name">Daily SCRUM</div>
+            <div class="event-note">Recurring.</div>
+          </div>
+          <div class="event milestone">
+            <div class="event-time">Morning</div>
+            <div class="event-name">Write Week 1 Experiment Summary</div>
+            <div class="event-note">Document what you learned: experiments run, assumptions tested, what worked and what failed. Share with Catarina.</div>
+          </div>
+          <div class="event">
+            <div class="event-time">Midday</div>
+            <div class="event-name">End-of-week check-in with Catarina</div>
+            <div class="event-note">Share your summary, any blockers, and top questions about the Big Bet.</div>
+          </div>
+          <div class="event priority">
+            <div class="event-time">⚠️ TODAY</div>
+            <div class="event-name">ONE Conference Application CLOSES</div>
+            <div class="event-note">Deadline is today, April 24. Apply via the ONE Internal App before EOD.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-aside">
+      <strong>🔬 Big Bet Scout Structure.</strong> Digital work at OutSystems is organised around Big Bets — 3-week Scout missions that produce structured evidence. <strong>Week 1:</strong> understand the problem and baseline. <strong>Week 2:</strong> run experiments / prototype / test with users. <strong>Week 3:</strong> synthesise evidence and recommend: kill, continue scouting, or convert to Strike team. Ask Catarina where your current Big Bet sits in this cycle and what your first contribution should be.
+    </div>
   </div>
 
-  <div class="schedule-grid">
-
-    <div class="schedule-day">
-      <div class="day-label">
-        <div class="day-name">Mon</div>
-        <div class="day-tag">Day One</div>
-      </div>
-      <div class="day-events">
-        <div class="event">
-          <div class="event-time">9 AM</div>
-          <div class="event-body">
-            <div class="event-title">IT Setup & System Access <span class="pill pill-red">Priority</span></div>
-            <div class="event-note">Laptop, Okta/SSO, email, corporate VPN. Contact Digital Spot via <strong>#digital-spot</strong> for any access requests.</div>
-          </div>
-        </div>
-        <div class="event">
-          <div class="event-time">10 AM</div>
-          <div class="event-body">
-            <div class="event-title">1:1 with Catarina Sousa</div>
-            <div class="event-note">Align on your Big Bet assignment (#2 Enablement Scout), Q2 OKRs, and current experiment status. Ask about the Scout deliverable deadline, active hypotheses, and your first assigned tickets.</div>
-          </div>
-        </div>
-        <div class="event">
-          <div class="event-time">Afternoon</div>
-          <div class="event-body">
-            <div class="event-title">Dev environment setup & repo access</div>
-            <div class="event-note">Clone the main repos, get your local build running, verify ODC access and GitHub org permissions. Post in <strong>#digital-spot</strong> for any provisioning issues.</div>
-          </div>
-        </div>
-        <div class="event">
-          <div class="event-time">EOD</div>
-          <div class="event-body">
-            <div class="event-title">Join all Slack channels listed in this guide</div>
-            <div class="event-note">Introduce yourself in <strong>#digital</strong> and <strong>#one-revenue-team</strong>.</div>
-          </div>
-        </div>
-      </div>
+  <!-- 02 TOOLS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Tools &amp; Access</h2>
     </div>
-
-    <div class="schedule-day">
-      <div class="day-label">
-        <div class="day-name">Tue</div>
-        <div class="day-tag">Context Day</div>
-      </div>
-      <div class="day-events">
-        <div class="event">
-          <div class="event-time">Morning</div>
-          <div class="event-body">
-            <div class="event-title">Digital Team Sync <span class="pill pill-gold">Weekly</span></div>
-            <div class="event-note">Weekly team meeting covering Big Bet progress, sprint status, experiment results, and blockers. Ask Catarina for the recurring calendar invite.</div>
+    <div class="two-col">
+      <div>
+        <div class="tools-group-title">Core Digital Stack</div>
+        <div class="tool-row">
+          <div class="tool-icon red">OS</div>
+          <div class="tool-info">
+            <div class="tool-name">OutSystems ODC</div>
+            <div class="tool-desc">The platform you build on. All Digital apps and Big Bet POCs are built in ODC. Get your dev environment and personal space provisioned on Day 1.</div>
           </div>
+          <span class="tool-when">Day 1</span>
         </div>
-        <div class="event">
-          <div class="event-time">All day</div>
-          <div class="event-body">
-            <div class="event-title">Big Bet brief walkthrough with Catarina</div>
-            <div class="event-note">Guided tour of Big Bet #2 — the problem statement, experiment history, current hypotheses, and Scout deliverable deadline. Read the WIP doc in Drive before this meeting.</div>
+        <div class="tool-row">
+          <div class="tool-icon blue">JR</div>
+          <div class="tool-info">
+            <div class="tool-name">Jira</div>
+            <div class="tool-desc">Issue tracking and sprint planning for all Digital projects — Big Bets, V2MOM app, and internal tooling. Get added to your team's board on Day 1.</div>
           </div>
+          <span class="tool-when">Day 1</span>
         </div>
-        <div class="event">
-          <div class="event-time">Afternoon</div>
-          <div class="event-body">
-            <div class="event-title">Read all existing Scout documentation</div>
-            <div class="event-note">Find the Big Bet Brief, WIP experiment doc (shared by Catarina), and any POC apps in Google Drive. Understand what's been tried, what failed, and what assumptions are still untested before writing a line of code.</div>
+        <div class="tool-row">
+          <div class="tool-icon">GH</div>
+          <div class="tool-info">
+            <div class="tool-name">GitHub</div>
+            <div class="tool-desc">Source control for Digital team repos — internal tooling, V2MOM app, and Scout POCs. Request access to the Digital org and learn branching conventions from the Engineering Handbook.</div>
           </div>
+          <span class="tool-when">Day 1</span>
         </div>
-      </div>
-    </div>
-
-    <div class="schedule-day highlight">
-      <div class="day-label">
-        <div class="day-name">Wed</div>
-        <div class="day-tag">Build Day</div>
-      </div>
-      <div class="day-events">
-        <div class="event">
-          <div class="event-time">All day</div>
-          <div class="event-body">
-            <div class="event-title">First experiment or PR <span class="pill pill-blue">Ship it</span></div>
-            <div class="event-note">Run a small Scout experiment or open a first PR — something that produces evidence. The goal is to go through the full cycle quickly: hypothesis → build → test → document. Learn the team's conventions by doing.</div>
+        <div class="tool-row">
+          <div class="tool-icon green">GD</div>
+          <div class="tool-info">
+            <div class="tool-name">Google Drive</div>
+            <div class="tool-desc">All Big Bet briefs, Scout WIP docs, experiment notes, and POC presentations live here. Primary knowledge base. Get access to the Digital shared folder on Day 1.</div>
           </div>
+          <span class="tool-when">Day 1</span>
         </div>
-        <div class="event">
-          <div class="event-time">Afternoon</div>
-          <div class="event-body">
-            <div class="event-title">Attend Agentic Confidence Thursday (live replay)</div>
-            <div class="event-note">Today's session: Value Selling — Agent Workbench (11 AM ET / 4 PM Lisbon). Your tools support the revenue team — understand what they're learning. Check <strong>#one-revenue-team</strong> for the link.</div>
+        <div class="tool-row">
+          <div class="tool-icon">CF</div>
+          <div class="tool-info">
+            <div class="tool-name">Confluence</div>
+            <div class="tool-desc">Internal wiki — engineering standards, ADRs, team rituals, and onboarding guides. Search here before asking Slack. Architecture decision records live here.</div>
           </div>
+          <span class="tool-when">Week 1</span>
         </div>
-        <div class="event">
-          <div class="event-time">EOD</div>
-          <div class="event-body">
-            <div class="event-title">Talk to a revenue team end user</div>
-            <div class="event-note">Digital's primary end users are AEs, SDRs, CSMs. Ask Catarina to connect you with one for a 30-min interview. Understand their daily friction before building a solution for it.</div>
+      </div>
+      <div>
+        <div class="tools-group-title">Collaboration &amp; Intelligence</div>
+        <div class="tool-row">
+          <div class="tool-icon">ZM</div>
+          <div class="tool-info">
+            <div class="tool-name">Zoom</div>
+            <div class="tool-desc">All internal sessions. Join the recurring Digital team sync, stakeholder reviews, and field enablement sessions via calendar.</div>
           </div>
+          <span class="tool-when">Day 1</span>
         </div>
-      </div>
-    </div>
-
-    <div class="schedule-day">
-      <div class="day-label">
-        <div class="day-name">Thu</div>
-        <div class="day-tag">Company Day</div>
-      </div>
-      <div class="day-events">
-        <div class="event">
-          <div class="event-time">Live session</div>
-          <div class="event-body">
-            <div class="event-title">Agentic Confidence Thursdays <span class="pill pill-red">Attend</span></div>
-            <div class="event-note">Weekly enablement series building agentic fluency across the revenue team. You're building tools for these people — understand what they need faster access to. Check <strong>#one-revenue-team</strong> for the link.</div>
+        <div class="tool-row">
+          <div class="tool-icon">SL</div>
+          <div class="tool-info">
+            <div class="tool-name">Slack</div>
+            <div class="tool-desc">Primary communication. All critical intel flows here. See channel list in Section 04.</div>
           </div>
+          <span class="tool-when">Day 1</span>
         </div>
-        <div class="event">
-          <div class="event-time">Afternoon</div>
-          <div class="event-body">
-            <div class="event-title">Digital All-Hands / Sprint Review <span class="pill pill-gold">Regular</span></div>
-            <div class="event-note">Cross-Digital sync on Big Bet progress, experiment results, and recommendations. Check <strong>#digital</strong> for the calendar invite. Scout outcomes and Strike team decisions are made here.</div>
+        <div class="tool-row">
+          <div class="tool-icon red">CL</div>
+          <div class="tool-info">
+            <div class="tool-name">Claude (Anthropic)</div>
+            <div class="tool-desc">AI assistant and API backbone for Digital's Big Bet experiments. The Scout mission explicitly tests Claude (via connectors to Drive, Slack, and Seismic) as a knowledge search layer for the revenue team.</div>
           </div>
+          <span class="tool-when">Week 1</span>
         </div>
-        <div class="event">
-          <div class="event-time">EOD</div>
-          <div class="event-body">
-            <div class="event-title">1:1s with key cross-functional partners</div>
-            <div class="event-note">Book short intro calls with your business sponsor (Bobbie Jo Frazier / Madeline Dibble — RevOps) and your Revenue Enablement counterpart (Sarah Cropp). Understanding their success criteria is your product brief.</div>
+        <div class="tool-row">
+          <div class="tool-icon amber">DM</div>
+          <div class="tool-info">
+            <div class="tool-name">Deal Mate</div>
+            <div class="tool-desc">Internal AI tool built by Digital for the revenue team. Using and critiquing it is part of your research. Understand what it does and where it falls short — your work may improve or replace parts of it.</div>
           </div>
+          <span class="tool-when">Week 1</span>
         </div>
-      </div>
-    </div>
-
-    <div class="schedule-day">
-      <div class="day-label">
-        <div class="day-name">Fri</div>
-        <div class="day-tag">Evidence Day</div>
-      </div>
-      <div class="day-events">
-        <div class="event">
-          <div class="event-time">Morning</div>
-          <div class="event-body">
-            <div class="event-title">Write your week 1 experiment summary</div>
-            <div class="event-note">Document what you learned this week: experiments run, assumptions tested, what worked and what failed. Share it with Catarina. The Scout deliverable is structured evidence — build the habit from week 1.</div>
+        <div class="tool-row">
+          <div class="tool-icon blue">V2</div>
+          <div class="tool-info">
+            <div class="tool-name">V2MOM App</div>
+            <div class="tool-desc">Internal goal-alignment tool built and maintained by the Digital team. You may inherit work on this alongside your Big Bet — Catarina is actively working on it.</div>
           </div>
+          <span class="tool-when">FYI</span>
         </div>
-        <div class="event">
-          <div class="event-time">Midday</div>
-          <div class="event-body">
-            <div class="event-title">End-of-week check-in with Catarina</div>
-            <div class="event-note">Share your experiment summary, any environment or access blockers, and your top questions about the Big Bet. Show you're oriented and already generating evidence.</div>
-          </div>
-        </div>
-        <div class="event">
-          <div class="event-time">EOD</div>
-          <div class="event-body">
-            <div class="event-title">Apply for ONE Conference <span class="pill pill-outline">Deadline: April 24</span></div>
-            <div class="event-note">Digital attends ONE to demo internal tools and gather feedback from end users. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation" class="event-link">ONE Internal App ↗</a>. Review <a href="https://drive.google.com/file/d/1nay32GhcxKYEeiviDXKQAkdpWiE2YzXd/view?usp=sharing" class="event-link">attendance guidelines ↗</a>.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="aside-box" style="margin-top:16px">
-    <strong>Big Bet Scout Structure</strong>
-    Digital work at OutSystems is organised around Big Bets — 3-week Scout missions that produce structured evidence. The Scout structure is: <strong>Week 1</strong> — understand the problem and baseline. <strong>Week 2</strong> — run experiments / prototype / test with users. <strong>Week 3</strong> — synthesise evidence and recommend: kill, continue scouting, or convert to Strike team. Ask Catarina where the current Big Bet is in this cycle and what your first contribution should be.
-  </div>
-</section>
-
-
-<!-- 02 TOOLS & ACCESS -->
-<section class="section">
-  <div class="section-header">
-    <span class="section-num">02</span>
-    <h2 class="section-title">Tools &amp; Access</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="two-col" style="margin-bottom:24px">
-    <div>
-      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Core Digital Stack</div>
-
-      <div class="tool-row">
-        <div class="tool-icon red">OS</div>
-        <div>
-          <div class="tool-name">OutSystems ODC</div>
-          <div class="tool-desc">The platform you build on. All Digital apps and Big Bet POCs are built in ODC. Get your dev environment and personal space provisioned on Day 1. <a href="https://identity.outsystems.com" class="event-link">ODC Portal ↗</a></div>
-        </div>
-        <div class="tool-status">Day 1</div>
-      </div>
-
-      <div class="tool-row">
-        <div class="tool-icon blue">JR</div>
-        <div>
-          <div class="tool-name">Jira</div>
-          <div class="tool-desc">Issue tracking and sprint planning for all Digital projects — Big Bets, V2MOM app, and internal tooling. Get added to your team's board Day 1.</div>
-        </div>
-        <div class="tool-status">Day 1</div>
-      </div>
-
-      <div class="tool-row">
-        <div class="tool-icon green">GH</div>
-        <div>
-          <div class="tool-name">GitHub</div>
-          <div class="tool-desc">Source control for Digital team repos — internal tooling, V2MOM app, and Scout POCs. Request access to the Digital org on Day 1. Learn branching conventions from the Engineering Handbook.</div>
-        </div>
-        <div class="tool-status">Day 1</div>
-      </div>
-
-      <div class="tool-row">
-        <div class="tool-icon gold">GD</div>
-        <div>
-          <div class="tool-name">Google Drive</div>
-          <div class="tool-desc">All Big Bet briefs, Scout WIP docs, experiment notes, and POC presentations live here. Get access to the Digital shared folder on Day 1. <a href="https://docs.google.com/document/d/1PkejuwY6pWvACyUMqKZp3CsxtLU02xmzFbtijAPgu0I/edit" class="event-link">Big Bet #2 Brief ↗</a></div>
-        </div>
-        <div class="tool-status">Day 1</div>
-      </div>
-
-      <div class="tool-row">
-        <div class="tool-icon">CF</div>
-        <div>
-          <div class="tool-name">Confluence</div>
-          <div class="tool-desc">Internal wiki — engineering standards, ADRs, team rituals, and onboarding guides. Search here before asking Slack.</div>
-        </div>
-        <div class="tool-status">Week 1</div>
-      </div>
-    </div>
-
-    <div>
-      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Collaboration &amp; Intelligence</div>
-
-      <div class="tool-row">
-        <div class="tool-icon blue">ZM</div>
-        <div>
-          <div class="tool-name">Zoom</div>
-          <div class="tool-desc">All internal sessions. Join the recurring Digital team sync, stakeholder reviews, and field enablement sessions (Agentic Thursdays, Sales Play Tuesday) via calendar.</div>
-        </div>
-        <div class="tool-status">Day 1</div>
-      </div>
-
-      <div class="tool-row">
-        <div class="tool-icon" style="background:#4A154B">SL</div>
-        <div>
-          <div class="tool-name">Slack</div>
-          <div class="tool-desc">Primary communication. All critical intel flows here. See channel list in Section 04.</div>
-        </div>
-        <div class="tool-status">Day 1</div>
-      </div>
-
-      <div class="tool-row">
-        <div class="tool-icon gold">CL</div>
-        <div>
-          <div class="tool-name">Claude (Anthropic)</div>
-          <div class="tool-desc">AI assistant and API backbone for Digital's Big Bet experiments. The Scout mission explicitly tests Claude (via connectors to Drive, Slack, and Seismic) as a knowledge search layer for the revenue team. You're building and testing this.</div>
-        </div>
-        <div class="tool-status">Week 1</div>
-      </div>
-
-      <div class="tool-row">
-        <div class="tool-icon green">DM</div>
-        <div>
-          <div class="tool-name">Deal Mate</div>
-          <div class="tool-desc">Internal AI tool built by Digital for the revenue team. Using and critiquing it is part of your research. Understand what it does and where it falls short — your work may improve or replace parts of it. <a href="https://apps.outsystems.app/DealMate" class="event-link">Deal Mate ↗</a></div>
-        </div>
-        <div class="tool-status">Week 1</div>
-      </div>
-
-      <div class="tool-row">
-        <div class="tool-icon">V2</div>
-        <div>
-          <div class="tool-name">V2MOM App</div>
-          <div class="tool-desc">Internal goal-alignment tool built and maintained by the Digital team. You may inherit work on this alongside your Big Bet.</div>
-        </div>
-        <div class="tool-status">FYI</div>
       </div>
     </div>
   </div>
-</section>
 
-
-<!-- 03 TEAM -->
-<section class="section">
-  <div class="section-header">
-    <span class="section-num">03</span>
-    <h2 class="section-title">Your Team — Key Introductions</h2>
-    <div class="section-rule"></div>
+  <!-- 03 TEAM -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Your Team — Key Introductions</h2>
+    </div>
+    <table class="team-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Why they matter to you</th>
+          <th>Slack</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="team-name">Catarina Sousa</div><div class="team-role">Your direct manager</div></td>
+          <td>Engineering Manager, Digital</td>
+          <td>Owns your Big Bet assignment, runs your 1:1, and sets your first-sprint priorities. She's currently juggling the V2MOM app and an Agent outcome experiment — come prepared to plug in fast.</td>
+          <td><span class="slack-handle">@catarina.sousa</span></td>
+        </tr>
+        <tr>
+          <td><div class="team-name">Fábio Agapito</div><div class="team-role">Digital Engineer</div></td>
+          <td>Software Engineer, Digital</td>
+          <td>Creator of the Daily SCRUM series. Good first person to ask about team conventions, the codebase, and engineering standards in week 1.</td>
+          <td><span class="slack-handle">@fabio.agapito</span></td>
+        </tr>
+        <tr>
+          <td><div class="team-name">Filipa Martins</div><div class="team-role">Digital Team</div></td>
+          <td>Software Engineer / Product Owner, Digital</td>
+          <td>Regular team peer in the Daily SCRUM and V2MOM Design syncs. Ask them to walk you through the codebase and current experiment history.</td>
+          <td><span class="slack-handle">@filipa.martins</span></td>
+        </tr>
+        <tr>
+          <td><div class="team-name">Cláudia Serra</div><div class="team-role">Digital Team</div></td>
+          <td>Software Engineer, Digital</td>
+          <td>Consistent presence in team syncs. Good peer to pair with on technical questions and scout documentation early on.</td>
+          <td><span class="slack-handle">@claudia.serra</span></td>
+        </tr>
+        <tr>
+          <td><div class="team-name">Beatriz Sousa</div><div class="team-role">Digital Team</div></td>
+          <td>Software Engineer / PO, Digital</td>
+          <td>Active in V2MOM Design/DEX syncs and Daily SCRUM. Part of the core team delivering against the Big Bet structure.</td>
+          <td><span class="slack-handle">@beatriz.sousa</span></td>
+        </tr>
+        <tr>
+          <td><div class="team-name">Loren Mastronardi</div><div class="team-role">Cross-functional</div></td>
+          <td>Performance & Tooling Lead</td>
+          <td>Organises the Performance Tool Sync (Wednesdays 16:30). Key cross-functional partner on internal tooling and platform performance initiatives.</td>
+          <td><span class="slack-handle">@loren.mastronardi</span></td>
+        </tr>
+        <tr>
+          <td><div class="team-name">Tiago B. Azevedo</div><div class="team-role">Digital Leadership</div></td>
+          <td>Head of Digital / Director</td>
+          <td>Organises the Digitalk Monthly (3rd Thursday of the month, 15:00 Lisbon). Sets Big Bet selection, Scout team assignments, and the Digital roadmap.</td>
+          <td><span class="slack-handle">@tiago.b.azevedo</span></td>
+        </tr>
+        <tr>
+          <td><div class="team-name">Sarah Cropp</div><div class="team-role">Revenue Enablement</div></td>
+          <td>Sales Enablement Lead</td>
+          <td>Runs Revenue Pulse and the Agentic Confidence series. Owns the enablement content corpus your Big Bet may aim to make searchable. Critical stakeholder for Digital Scouts.</td>
+          <td><span class="slack-handle">@sarah.cropp</span></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Digital Team &amp; Big Bet Stakeholders</div>
-
-  <table class="team-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Role</th>
-        <th>Why they matter to you</th>
-        <th>Slack / Contact</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="name-cell">Catarina Sousa</td>
-        <td class="role-cell">Manager, Digital<br>Your direct manager</td>
-        <td>Co-scout on Big Bet #2. Sets your Sprint assignments, holds the Big Bet brief, and owns the Scout deliverable timeline. Book a 1:1 on Day 1 before anything else.</td>
-        <td class="slack-cell">@catarina.sousa</td>
-      </tr>
-      <tr>
-        <td class="name-cell">Bobbie Jo Frazier</td>
-        <td class="role-cell">Business Sponsor<br>Revenue Enablement</td>
-        <td>Business owner of Big Bet #2 and Field Enablement Roadmap. Defines what success looks like for the Scout. Get a 1:1 this week to understand her success criteria.</td>
-        <td class="slack-cell">@bobbie.jo.frazier</td>
-      </tr>
-      <tr>
-        <td class="name-cell">Madeline Dibble</td>
-        <td class="role-cell">SVP Revenue Operations</td>
-        <td>Co-sponsor of Big Bet #2 alongside Bobbie Jo. Runs RevOps including Sales Development. Her org is the primary end-user of the tooling you're building.</td>
-        <td class="slack-cell">@madeline.dibble</td>
-      </tr>
-      <tr>
-        <td class="name-cell">Sarah Cropp</td>
-        <td class="role-cell">Revenue Enablement</td>
-        <td>Runs Revenue Pulse Headlines, Sales Play Tuesdays, and Agentic Thursdays. Owns the content corpus your Big Bet aims to make searchable. Critical stakeholder for the Scout.</td>
-        <td class="slack-cell">@sarah.cropp</td>
-      </tr>
-      <tr>
-        <td class="name-cell">Kim Seabrook</td>
-        <td class="role-cell">CRO / Revenue Leader</td>
-        <td>Sets the strategic direction for the Revenue team — the end users your Digital tools serve. Follow her posts in #one-revenue-team to understand what the field is prioritising.</td>
-        <td class="slack-cell">@kim.seabrook</td>
-      </tr>
-      <tr>
-        <td class="name-cell">Jean-Baptiste (JB) Minchelli</td>
-        <td class="role-cell">Solutions / BFS</td>
-        <td>Just launched the BFS Agentic Solution Kit in the Forge. His launches are the kind of field content your knowledge search tool should be able to surface instantly.</td>
-        <td class="slack-cell">@jb.minchelli</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-
-<!-- 04 SLACK CHANNELS -->
-<section class="section">
-  <div class="section-header">
-    <span class="section-num">04</span>
-    <h2 class="section-title">Slack Channels — Join These Now</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="channel-grid">
-    <div class="channel-item">
-      <div class="channel-hash">#</div>
-      <div class="channel-body">
-        <div class="channel-name">digital</div>
-        <div class="channel-desc">All-hands for the Digital team. Big Bet updates, Sprint reviews, tool launches, and org announcements. Read daily — this is your team's primary coordination channel.</div>
-      </div>
+  <!-- 04 CHANNELS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Slack Channels — Join These Now</h2>
     </div>
-    <div class="channel-item">
-      <div class="channel-hash">#</div>
-      <div class="channel-body">
-        <div class="channel-name">digital-spot</div>
-        <div class="channel-desc">IT support for access requests. Post here for Slack workspace access, Jira provisioning, ODC environments, GitHub org access, and app permissions on Day 1.</div>
+    <div class="channel-grid">
+      <div class="channel-item priority-ch">
+        <div class="channel-name">#digital</div>
+        <div class="channel-desc">All-hands for the Digital team. Big Bet updates, Sprint reviews, tool launches, and org announcements. Read daily — this is your team's primary coordination channel. Introduce yourself here on Day 1.</div>
       </div>
-    </div>
-    <div class="channel-item">
-      <div class="channel-hash">#</div>
-      <div class="channel-body">
-        <div class="channel-name">one-revenue-team</div>
+      <div class="channel-item priority-ch">
+        <div class="channel-name">#digital-spot</div>
+        <div class="channel-desc">IT support for access requests. Post here on Day 1 for Slack workspace access, Jira provisioning, ODC environments, GitHub org access, and app permissions.</div>
+      </div>
+      <div class="channel-item">
+        <div class="channel-name">#one-revenue-team</div>
         <div class="channel-desc">All-hands for the revenue org. Revenue Pulse, product launches, leadership updates. Follow to understand the end users your tools serve — their problems are your product brief.</div>
       </div>
-    </div>
-    <div class="channel-item">
-      <div class="channel-hash">#</div>
-      <div class="channel-body">
-        <div class="channel-name">ase-internal</div>
+      <div class="channel-item">
+        <div class="channel-name">#v2mom-outsystems</div>
+        <div class="channel-desc">V2MOM app channel — Catarina is active here. Relevant to your work given the team's V2MOM app ownership. Track questions and platform updates.</div>
+      </div>
+      <div class="channel-item">
+        <div class="channel-name">#ase-internal</div>
         <div class="channel-desc">Agentic Systems Engineering updates and field feedback. Critical context for Digital's Big Bets — your tools need to support the ASE narrative and help the field understand the new category.</div>
       </div>
-    </div>
-    <div class="channel-item">
-      <div class="channel-hash">#</div>
-      <div class="channel-body">
-        <div class="channel-name">agent-workbench-pricing</div>
-        <div class="channel-desc">Agent Workbench pricing and execution entitlement updates. The Scout experiments use the Claude API and Agent Workbench — follow for breaking changes and new capabilities.</div>
+      <div class="channel-item">
+        <div class="channel-name">#agent-workbench-pricing</div>
+        <div class="channel-desc">Agent Workbench pricing FAQs and execution entitlement updates. Follow for breaking changes and new capabilities — Digital's Scout experiments use the Claude API and Agent Workbench platform.</div>
+      </div>
+      <div class="channel-item">
+        <div class="channel-name">#one-conference</div>
+        <div class="channel-desc">ONE '26 planning (June 2–3). Apply by TODAY, April 24. Also monitor for customer invite opportunities — Digital typically has demo slots.</div>
+      </div>
+      <div class="channel-item">
+        <div class="channel-name">#bfs-mastermind</div>
+        <div class="channel-desc">Banking & Financial Services sales play community. Monitor as user research — the questions asked here are exactly the kind your Big Bet's knowledge search system should be able to answer.</div>
       </div>
     </div>
-    <div class="channel-item">
-      <div class="channel-hash">#</div>
-      <div class="channel-body">
-        <div class="channel-name">bfs-mastermind</div>
-        <div class="channel-desc">Banking &amp; Financial Services sales play community. Monitor as user research — the questions asked here are exactly the kind your Big Bet's knowledge search system should answer.</div>
+    <div class="channels-aside">
+      <strong>Digital Team Canvas / Big Bet Board</strong> — Pinned in <strong>#digital</strong>. This is the living index of active Big Bets, Scout status, experiment results, and Digital team resources. Bookmark it. When you need to understand what other Scouts are working on or find prior experiment evidence, start here.
+    </div>
+  </div>
+
+  <!-- 05 OFFICE & LOGISTICS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Office &amp; Logistics</h2>
+    </div>
+    <div class="logistics-grid">
+      <div class="logistics-cell">
+        <div class="logistics-key">IT &amp; Access Issues</div>
+        <div class="logistics-val">Digital Spot</div>
+        <div class="logistics-detail">Message @Digital Spot or post in #digital-spot. They handle Slack access, Jira, ODC, GitHub, and app permissions.</div>
+      </div>
+      <div class="logistics-cell">
+        <div class="logistics-key">Systems to Provision Day 1</div>
+        <div class="logistics-val">Core Stack Checklist</div>
+        <div class="logistics-detail">GitHub · Jira · Confluence · ODC · Zoom · Slack workspaces</div>
+      </div>
+      <div class="logistics-cell">
+        <div class="logistics-key">Pay / HR Questions</div>
+        <div class="logistics-val">People Team</div>
+        <div class="logistics-detail">DM your HRBP or contact people@outsystems.com for compensation, benefits, and HR enquiries.</div>
+      </div>
+      <div class="logistics-cell">
+        <div class="logistics-key">Technical Docs &amp; ADRs</div>
+        <div class="logistics-val">Confluence</div>
+        <div class="logistics-detail">Source of truth for engineering standards, architecture decisions, runbooks, and team rituals. Search here before asking Slack.</div>
+      </div>
+      <div class="logistics-cell">
+        <div class="logistics-key">Onboarding Questions</div>
+        <div class="logistics-val">Catarina Sousa</div>
+        <div class="logistics-detail">Digital onboarding is run directly by your manager. Ask for your Big Bet brief, Jira board access, and first-week checklist on Day 1.</div>
+      </div>
+      <div class="logistics-cell">
+        <div class="logistics-key">Company Goals</div>
+        <div class="logistics-val">V2MOM App / Compass</div>
+        <div class="logistics-detail">Company and team V2MOMs. Your own team builds and maintains the V2MOM app — a point of pride and a product to understand deeply.</div>
       </div>
     </div>
-    <div class="channel-item">
-      <div class="channel-hash">#</div>
-      <div class="channel-body">
-        <div class="channel-name">one-conference</div>
-        <div class="channel-desc">ONE '26 planning (June 2–3). Apply by April 24. Digital attends to demo internal tools and gather direct feedback from end users. Also monitor for customer invite opportunities.</div>
+  </div>
+
+  <!-- 06 Q2 BIG BET / SCOUT STRUCTURE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Q2 Big Bet Structure &amp; Team Rituals</h2>
+    </div>
+    <div class="spiff-banner">
+      <div>
+        <div class="spiff-banner-label">Your Work Context</div>
+        <div class="spiff-banner-title">Scout Mission — <em>3-Week Evidence Cycles</em></div>
+      </div>
+      <a class="spiff-banner-cta" href="https://apps.outsystems.app/DealMate">Open Deal Mate →</a>
+    </div>
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-card-title">🔬 Scout Timeline</div>
+        <div class="info-card-body"><strong>Week 1</strong> — Understand the problem, read all prior evidence, baseline the current state.<br><br><strong>Week 2</strong> — Run experiments, prototype, test with real revenue team end users.<br><br><strong>Week 3</strong> — Synthesise evidence and recommend: <strong>Kill · Continue · Convert</strong> to Strike team.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">🗓 Core Weekly Rituals</div>
+        <div class="info-card-body">
+          <strong>Daily SCRUM</strong> — Mon–Fri, 10:30 Lisbon<br>
+          <strong>V2MOM Design/DEX</strong> — Tue &amp; Thu, 10:00 Lisbon<br>
+          <strong>Digitalk Monthly</strong> — 3rd Thu, 15:00 Lisbon<br>
+          <strong>1:1 Catarina</strong> — Wed, 15:00 Lisbon<br>
+          <strong>Perf Tool Sync</strong> — Wed, 16:30 Lisbon<br>
+          <strong>Sales Play Tuesdays</strong> — weekly in #one-revenue-team<br>
+          <strong>Agentic Thursdays</strong> — weekly, 16:00 Lisbon
+        </div>
       </div>
     </div>
-    <div class="channel-item">
-      <div class="channel-hash">#</div>
-      <div class="channel-body">
-        <div class="channel-name">digital-announcements</div>
-        <div class="channel-desc">Official Digital team announcements, tooling updates, system outages, and Workday notices from the Digital Spot. Low volume but high signal — follow to stay informed.</div>
+  </div>
+
+  <!-- 07 RESOURCES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Essential Resources — Bookmark These</h2>
+    </div>
+    <div class="resource-row">
+      <span class="res-type red">Brief</span>
+      <span class="res-name">Big Bet Brief — Google Drive</span>
+      <span class="res-desc">Your primary mandate document. Read before your Day 1 Big Bet walkthrough with Catarina.</span>
+    </div>
+    <div class="resource-row">
+      <span class="res-type">WIP</span>
+      <span class="res-name">Scout WIP Document — Google Drive</span>
+      <span class="res-desc">Live experiment notes and findings. Authoritative source of what's been tried and what was found.</span>
+    </div>
+    <div class="resource-row">
+      <span class="res-type blue">Video</span>
+      <span class="res-name">Product Sizzle Demo — YouTube</span>
+      <span class="res-desc">Understand what you're building tools for. Watch the ASE product demo before week 2.</span>
+    </div>
+    <div class="resource-row">
+      <span class="res-type">Wiki</span>
+      <span class="res-name">Engineering Handbook — Confluence</span>
+      <span class="res-desc">Coding standards, branching strategy, deployment process, and team rituals. Day 1 reading.</span>
+    </div>
+    <div class="resource-row">
+      <span class="res-type green">App</span>
+      <span class="res-name">Deal Mate — apps.outsystems.app/DealMate</span>
+      <span class="res-desc">Internal AI tool built by your team. Use and critique it — your work may improve or replace parts of it.</span>
+    </div>
+    <div class="resource-row">
+      <span class="res-type red">FAQ</span>
+      <span class="res-name">ASE FAQ — Internal Google Doc</span>
+      <span class="res-desc">Know the platform you're building on. Read the Agentic Systems Engineering FAQ before week 2.</span>
+    </div>
+    <div class="resource-row">
+      <span class="res-type">ADRs</span>
+      <span class="res-name">Architecture Decision Records — Confluence</span>
+      <span class="res-desc">Why things are built the way they are. Essential context before making technical decisions.</span>
+    </div>
+    <div class="resource-row">
+      <span class="res-type blue">Hub</span>
+      <span class="res-name">Revenue Hub Canvas — #one-revenue-team</span>
+      <span class="res-desc">All Revenue Pulse Headlines & Previews. Your window into the field team's needs and priorities.</span>
+    </div>
+    <div class="resource-row">
+      <span class="res-type red">⚠️ Apply</span>
+      <span class="res-name">ONE Conference Internal App — Deadline TODAY April 24</span>
+      <span class="res-desc">Apply via the ONE Internal App: outsystemsdt.outsystems.app/ONE26/Requestcreation. Digital teams demo at ONE.</span>
+    </div>
+  </div>
+
+  <!-- 08 FAQ -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Common First-Week Questions</h2>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-prefix">Q.</span>
+        <span class="faq-q-text">What is Agentic Systems Engineering and how does it shape the Digital team's work?</span>
       </div>
+      <div class="faq-a">ASE is OutSystems' new platform category announced March 31, 2026 — repositioning from low-code to the platform that governs, orchestrates, and scales enterprise AI agents. For the Digital team, this means your internal tools and Big Bet experiments are part of the same transformation the company is selling externally. You're proving the concept from the inside. Read the ASE FAQ and watch the product sizzle demo to understand the strategic context for your work.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-prefix">Q.</span>
+        <span class="faq-q-text">What is the Big Bet I'm assigned to and where do I start?</span>
+      </div>
+      <div class="faq-a">Ask Catarina for a Big Bet brief walkthrough on Day 1 — you already have your Alignment Performance meeting scheduled at 10:00 AM today. Before the meeting, find the brief in Google Drive and read it top to bottom. Then check the WIP experiment doc to understand what's already been tried. Your first job is to understand the problem space well enough to run a useful experiment in week 2, not to start building.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-prefix">Q.</span>
+        <span class="faq-q-text">What does Digital onboarding look like and what are the milestones?</span>
+      </div>
+      <div class="faq-a">Digital onboarding is run directly by your manager — there is no formal programme separate from the work itself. Typical milestones: dev environment running by end of Day 1, first experiment or PR by end of week 1, first evidence doc shared with stakeholders by end of week 2, and a Scout recommendation (kill/continue/convert) by end of week 3. Ask Catarina how these apply to your specific Big Bet.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-prefix">Q.</span>
+        <span class="faq-q-text">How is performance measured on the Digital team?</span>
+      </div>
+      <div class="faq-a">Digital team performance is evaluated primarily on the quality and velocity of evidence produced in Scout missions, and on the impact of shipped internal tools. This means: clear experiment design, honest documentation of what worked and what didn't, and recommendations the business can act on. You also have a Certification exam scheduled on May 6 — make sure that's factored into your week 2 planning.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-prefix">Q.</span>
+        <span class="faq-q-text">When should I escalate a blocker vs. solve it myself?</span>
+      </div>
+      <div class="faq-a">Escalate to Catarina when: you're blocked for more than a day on something outside your control, a stakeholder is unresponsive and it's delaying the Scout timeline, or an experiment result suggests the Big Bet direction needs to change. For technical questions about the platform or APIs, post in <strong>#ase-internal</strong> or <strong>#agent-workbench-pricing</strong>. For infrastructure or access issues, post in <strong>#digital-spot</strong>. Scout timelines are short — surface blockers early.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-prefix">Q.</span>
+        <span class="faq-q-text">Where do I find existing work, documentation, and experiment history?</span>
+      </div>
+      <div class="faq-a">Three places: (1) <strong>Google Drive</strong> — all Big Bet briefs, Scout WIP docs, experiment notes, and POC presentation slides. Search for your Big Bet name. (2) <strong>Confluence</strong> — engineering standards, ADRs, and team process docs. (3) <strong>Jira</strong> — all current and historical tickets for your team's work. Before starting any experiment, verify it hasn't already been tried — the WIP doc is the authoritative source.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-prefix">Q.</span>
+        <span class="faq-q-text">What is the ONE Conference and how does Digital participate?</span>
+      </div>
+      <div class="faq-a">ONE '26 is OutSystems' annual flagship customer conference, June 2–3, 2026. The Digital team attends to demo internal tools and Big Bet outputs, gather direct feedback from end users, and showcase how OutSystems practices what it preaches with AI-powered internal tools. <strong>Application deadline is TODAY, April 24.</strong> Apply at outsystemsdt.outsystems.app/ONE26/Requestcreation.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-prefix">Q.</span>
+        <span class="faq-q-text">What's the most important thing to get right in the first 30 days?</span>
+      </div>
+      <div class="faq-a">Understand the problem before building the solution. The Digital team's biggest failure mode is shipping something elegant that doesn't match what end users actually need. In your first 30 days: read every existing document about your Big Bet, interview at least 3 revenue team end users, and run experiments with clear pass/fail criteria before writing production code. The engineers who make the biggest impact are the ones who combine technical skill with deep user empathy.</div>
     </div>
   </div>
 
-  <div class="aside-box" style="margin-top:16px">
-    <strong>Digital Team Canvas / Big Bet Board</strong>
-    Pinned in #digital — this is the living index of active Big Bets, Scout status, experiment results, and Digital team resources. Bookmark it. When you need to understand what other Scouts are working on or find prior experiment evidence, start here.
-  </div>
-</section>
+</main>
 
-
-<!-- 05 OFFICE & LOGISTICS -->
-<section class="section">
-  <div class="section-header">
-    <span class="section-num">05</span>
-    <h2 class="section-title">Office &amp; Logistics</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="logistics-grid">
-    <div class="logistics-cell">
-      <div class="lc-label">IT &amp; Access Issues</div>
-      <div class="lc-value">Digital Spot</div>
-      <div class="lc-sub">Message @Digital Spot or post in #digital-spot. They handle Slack access, Jira, ODC environments, and app permissions.</div>
-    </div>
-    <div class="logistics-cell">
-      <div class="lc-label">Systems &amp; Provisioning</div>
-      <div class="lc-value">Day 1 checklist</div>
-      <div class="lc-sub">GitHub · Jira · Confluence · ODC · Zoom · Slack workspaces · Workday MDM (Intune enrollment)</div>
-    </div>
-    <div class="logistics-cell">
-      <div class="lc-label">Pay / HR Questions</div>
-      <div class="lc-value">HR / People Team</div>
-      <div class="lc-sub"><a href="mailto:people@outsystems.com" style="color:var(--accent);text-decoration:none">people@outsystems.com</a> or DM HR team in Slack.</div>
-    </div>
-    <div class="logistics-cell">
-      <div class="lc-label">Technical Docs &amp; ADRs</div>
-      <div class="lc-value">Confluence</div>
-      <div class="lc-sub">Source of truth for engineering standards, architecture decisions, runbooks, and team rituals. Search here before asking Slack.</div>
-    </div>
-    <div class="logistics-cell">
-      <div class="lc-label">Onboarding Questions</div>
-      <div class="lc-value">Catarina Sousa</div>
-      <div class="lc-sub">Digital onboarding is run directly by your manager. Ask for your Big Bet brief, Jira board access, and first-week checklist on Day 1.</div>
-    </div>
-    <div class="logistics-cell">
-      <div class="lc-label">Company Goals</div>
-      <div class="lc-value">V2MOM App / Compass</div>
-      <div class="lc-sub">Company and team V2MOMs. Understand how your Big Bet connects to company OKRs. The V2MOM app is built and maintained by your own team.</div>
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div>
+    <strong>OutSystems Digital · EMEA · Lisbon</strong><br>
+    Diogo Sampaio — Senior Software Engineer<br>
+    Generated April 24, 2026<br>
+    Prepared by Claude (Anthropic) via Agentic Onboarding Skill
+    <div class="sources-list">
+      [1] Workday / OrgChart MCP — Diogo Sampaio worker record (Apr 24, 2026)<br>
+      [2] Slack #one-revenue-team — Revenue Pulse, Company Context (Apr 24, 2026)<br>
+      [3] Slack — Manager activity search (Catarina Sousa, Apr 2026)<br>
+      [4] Google Calendar — Diogo Sampaio primary calendar (Apr 24 – May 22, 2026)<br>
+      [5] Google Drive — digital_week-one-guide_template (folder 1E1m8lW2BRD, Apr 24, 2026)
     </div>
   </div>
-</section>
-
-
-<!-- 06 BIG BET STRUCTURE & TEAM RITUALS -->
-<section class="section">
-  <div class="section-header">
-    <span class="section-num">06</span>
-    <h2 class="section-title">Q2 Big Bet Structure &amp; Team Rituals</h2>
-    <div class="section-rule"></div>
+  <div style="text-align: right;">
+    Questions → <strong>Catarina Sousa</strong><br>
+    IT Access → <strong>#digital-spot</strong><br>
+    ONE Conference → <strong>Apply today</strong>
   </div>
-
-  <div class="spiff-banner">
-    <div>
-      <div class="spiff-label">Scout Mission · Big Bet #2 — Enablement, Onboarding &amp; Coaching</div>
-      <div class="spiff-title">Week 1: Understand · Week 2: Experiment<br>Week 3: Evidence &amp; Recommendation</div>
-    </div>
-    <div style="text-align:right">
-      <div class="spiff-mult">3 wks</div>
-      <div class="spiff-sub">Scout Timeline<br>Kill · Continue · Convert</div>
-    </div>
-  </div>
-
-  <div class="two-col">
-    <div class="info-card">
-      <div class="card-label">Core Weekly Rituals</div>
-      <p><strong>Digital Team Sync</strong> — Weekly, ask Catarina for exact time: Big Bet status, blockers, experiment results</p>
-      <p><strong>Sprint Planning</strong> — Bi-weekly, ask Catarina: backlog grooming and ticket assignment</p>
-      <p><strong>Sales Play Tuesday</strong> — Field enablement session, via #one-revenue-team: new sales play rollout each week through May</p>
-      <p><strong>Agentic Thursdays</strong> — 11 AM ET / 4 PM Lisbon: revenue enablement confidence series, attend as user research</p>
-      <p style="margin-top:8px"><a href="https://outsystems.enterprise.slack.com/docs/T041063TZ/F0AS4RLQE5Q" style="color:var(--accent);font-size:12px;text-decoration:none;font-weight:500">Revenue Hub Canvas ↗</a></p>
-    </div>
-    <div class="info-card">
-      <div class="card-label">Performance &amp; Growth</div>
-      <p><strong>Performance review cycle</strong> — ask Catarina for cadence</p>
-      <p><strong>Big Bet success metrics</strong> — evidence quality, experiment velocity, stakeholder confidence in Scout output</p>
-      <p><strong>Digital Career Ladder</strong> — ask Catarina for access to the Engineering Career Ladder doc</p>
-      <p style="margin-top:8px;font-size:12px;color:var(--muted)">Ask Catarina how your contributions to Big Bets are evaluated and what 'great' looks like at your level.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- 07 RESOURCES -->
-<section class="section">
-  <div class="section-header">
-    <span class="section-num">07</span>
-    <h2 class="section-title">Essential Resources — Bookmark These</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="resource-row">
-    <div class="res-type">Brief</div>
-    <a href="https://docs.google.com/document/d/1PkejuwY6pWvACyUMqKZp3CsxtLU02xmzFbtijAPgu0I/edit">Big Bet Brief — Agentic Big Bet: Enablement</a>
-    <div class="res-note">Your primary mandate document</div>
-  </div>
-  <div class="resource-row">
-    <div class="res-type">WIP Doc</div>
-    <a href="https://docs.google.com/document/d/14rhFPru2_aE-beMqSxGk8EhWEmhy-lEjEoRXcCNSjd0/edit">Scout WIP Document — #2 Enablement, Onboarding, Coaching</a>
-    <div class="res-note">Live experiment notes &amp; findings</div>
-  </div>
-  <div class="resource-row">
-    <div class="res-type">Video</div>
-    <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU">Product Sizzle Demo — Agentic Systems Engineering</a>
-    <div class="res-note">Understand what you're building tools for</div>
-  </div>
-  <div class="resource-row">
-    <div class="res-type">FAQ</div>
-    <a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit">ASE FAQ — Internal</a>
-    <div class="res-note">Know the platform you're building on</div>
-  </div>
-  <div class="resource-row">
-    <div class="res-type">Hub</div>
-    <a href="https://outsystems.enterprise.slack.com/docs/T041063TZ/F0AS4RLQE5Q">Revenue Hub Canvas — Slack</a>
-    <div class="res-note">All Revenue Pulse Headlines &amp; Previews</div>
-  </div>
-  <div class="resource-row">
-    <div class="res-type">Roadmap</div>
-    <a href="https://outsystems.enterprise.slack.com/docs/T041063TZ/F0AQC5LF15Y">Field Enablement Roadmap — Q2 2026</a>
-    <div class="res-note">8 sales plays, Agentic series, ONE Conference schedule</div>
-  </div>
-  <div class="resource-row">
-    <div class="res-type">Tool</div>
-    <a href="https://apps.outsystems.app/DealMate">Deal Mate — Internal AI Tool</a>
-    <div class="res-note">The product your Big Bet may evolve or replace</div>
-  </div>
-  <div class="resource-row">
-    <div class="res-type">Conference</div>
-    <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE '26 Internal App — Apply by April 24</a>
-    <div class="res-note">Digital attends to demo and gather feedback</div>
-  </div>
-  <div class="resource-row">
-    <div class="res-type">Slides</div>
-    <a href="https://docs.google.com/presentation/d/1IAtTEYJUrQ92Gyna_YoR1pSbIkQ-xEr349uuARh9GiQ/edit">Customer-Facing ASE Slides</a>
-    <div class="res-note">Understand the external narrative for your internal work</div>
-  </div>
-</section>
-
-
-<!-- 08 FAQ -->
-<section class="section">
-  <div class="section-header">
-    <span class="section-num">08</span>
-    <h2 class="section-title">Common First-Week Questions</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q">What is Agentic Systems Engineering and how does it shape the Digital team's work?</div>
-    <div class="faq-a">ASE is OutSystems' new platform category announced March 31, 2026 — repositioning from low-code to the platform that governs, orchestrates, and scales enterprise AI agents. For the Digital team, this means your internal tools and Big Bet experiments are part of the same transformation the company is selling externally. You're proving the concept from the inside. Read the <a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit">ASE FAQ</a> and watch the <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU">product sizzle demo</a>.</div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q">What is Big Bet #2 and where do I start?</div>
-    <div class="faq-a">Big Bet #2 is the Enablement, Onboarding &amp; Coaching Scout — testing whether a Claude-powered assistant connected to Drive, Slack, and Seismic can give the revenue team a single trusted interface to search all content and get cited answers. The Scout is led by Catarina Sousa and is currently running experiments. Ask Catarina for a Big Bet brief walkthrough on Day 1. Before the meeting, read the <a href="https://docs.google.com/document/d/1PkejuwY6pWvACyUMqKZp3CsxtLU02xmzFbtijAPgu0I/edit">brief</a> and <a href="https://docs.google.com/document/d/14rhFPru2_aE-beMqSxGk8EhWEmhy-lEjEoRXcCNSjd0/edit">WIP doc</a> to understand what's already been tried.</div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q">What does Digital onboarding look like and what are the milestones?</div>
-    <div class="faq-a">Digital onboarding is run directly by your manager — there is no formal programme separate from the work itself. Typical milestones: dev environment running by end of Day 1, first experiment or PR by end of week 1, first evidence doc shared with stakeholders by end of week 2, and a Scout recommendation (kill/continue/convert) by end of week 3. Ask Catarina how these apply to your specific Big Bet and what 'ready to contribute' looks like.</div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q">How is performance measured on the Digital team?</div>
-    <div class="faq-a">Digital team performance is evaluated primarily on the quality and velocity of evidence produced in Scout missions, and on the impact of shipped internal tools. This means: clear experiment design, honest documentation of what worked and what didn't, and recommendations the business can act on. For ongoing apps like V2MOM, it's delivery quality and reliability. Ask Catarina how the review cycle works and what 'great' looks like for your specific role and Big Bet.</div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q">When should I escalate a blocker vs. solve it myself?</div>
-    <div class="faq-a">Escalate to Catarina when: you're blocked for more than a day on something outside your control, a stakeholder is unresponsive and it's delaying the Scout timeline, or an experiment result suggests the Big Bet direction needs to change. For technical questions about the platform or APIs, post in <strong>#ase-internal</strong> or <strong>#agent-workbench-pricing</strong>. For infrastructure or access issues, post in <strong>#digital-spot</strong>. When in doubt, surface it early — Scout timelines are short.</div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q">Where do I find existing work, documentation, and experiment history?</div>
-    <div class="faq-a">Three places: (1) <strong>Google Drive</strong> — all Big Bet briefs, Scout WIP docs, experiment notes, and POC presentation slides. Search for "Big Bet #2" or "Enablement". (2) <strong>Confluence</strong> — engineering standards, ADRs, and team process docs. (3) <strong>Jira</strong> — all current and historical tickets for your team's work. Before starting any experiment, verify it hasn't already been tried — the WIP doc is the authoritative source of what's been tested.</div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q">What is the ONE Conference and how does Digital participate?</div>
-    <div class="faq-a">ONE '26 is OutSystems' annual flagship customer conference, June 2–3. The Digital team attends to demo internal tools and Big Bet outputs, gather direct feedback from end users, and showcase how OutSystems practices what it preaches with AI-powered internal tools. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE Internal App</a> by <strong>April 24</strong>. Ask Catarina whether your team has a demo slot or specific participation goals.</div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q">What's the most important thing to get right in the first 30 days?</div>
-    <div class="faq-a">Understand the problem before building the solution. The Digital team's biggest failure mode is shipping something elegant that doesn't match what end users actually need. In your first 30 days: read every existing document about your Big Bet, interview at least 3 revenue team end users (AEs, SDRs, CSMs), and run experiments with clear pass/fail criteria before writing production code. The engineers who make the biggest impact on Digital are the ones who combine technical skill with deep user empathy.</div>
-  </div>
-
-</section>
-
-
-<!-- FOOTER -->
-<footer class="footer">
-  <p>OUTSYSTEMS DIGITAL · Lisbon<br>
-     Diogo Sampaio — Senior Software Engineer<br>
-     Generated April 24, 2026</p>
-  <p style="text-align:right">Prepared by Claude · OutSystems Digital<br>Questions → @catarina.sousa or @bobbie.jo.frazier</p>
 </footer>
-
-<div class="sources-list">
-  Sources: [1] Slack #one-revenue-team (April 2026) · [2] Slack #digital-announcements (April 2026) · [3] Google Drive — Agentic Big Bet Brief: Enablement (April 2026) · [4] Google Drive — WIP #2 Enablement, Onboarding, Coaching (April 2026) · [5] Workday / OutSystems Leadership MCP — orgchart (April 24, 2026) · [6] Slack — slack_search_users: Diogo Sampaio (April 24, 2026)
-</div>
 
 </body>
 </html>
